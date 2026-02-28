@@ -15,6 +15,7 @@
     <nav class="navbar">
     <div class="container nav-container">
         <h1 class="logo">Sanskruti</h1>
+        <button class="menu-toggle">☰</button>
 
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
@@ -39,8 +40,9 @@
         </p>
 
         <div class="hero-buttons">
-            <a href="#projects" class="btn-primary">View Projects</a>
-            <a href="#contact" class="btn-secondary">Contact Me</a>
+           <a href="#projects" class="btn btn-primary">View Projects</a>
+           <a href="resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+           <a href="#contact" class="btn btn-outline">Contact Me</a>
         </div>
     </div>
 </header>
@@ -248,6 +250,40 @@
     }
 
     window.addEventListener("scroll", revealOnScroll);
+</script>
+
+<script>
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav ul li a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+});
+</script>
+
+<script>
+const toggle = document.querySelector(".menu-toggle");
+const navMenu = document.querySelector("nav ul");
+
+toggle.addEventListener("click", () => {
+    navMenu.classList.toggle("show");
+});
 </script>
 
 </body>
